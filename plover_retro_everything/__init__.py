@@ -25,7 +25,7 @@ def recursively_get_old_english(stroke: Stroke, t: Translation) -> List[str]:
 
 def retro_everything(translator: Translator, stroke: Stroke, cmdline: str):
     print("\n\n\nRetro everything invoked with: " + str(stroke) + ", " + cmdline)
-    args = cmdline.split("::")
+    args = cmdline.split(",")
     left_char = args[0]
     right_char = args[1]
 

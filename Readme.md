@@ -8,7 +8,7 @@ allowing you to turn most mode-switching plugin into a retro-plugin!
 Add dictionary entries like these:
 
 ```json
-"KARPS": "{:retro_everything:{MODE:CAPS},{MODE:RESET})}",
-"*UPBDZ": "{:retro_everything:{MODE:SET_SPACE:_},{MODE:RESET})}"
+"KARPS": "=retro_everything:{MODE:CAPS},{MODE:RESET})",
+"*UPBDZ": "=retro_everything:{MODE:SET_SPACE:_},{MODE:RESET})"
 ```
 and that's it!
