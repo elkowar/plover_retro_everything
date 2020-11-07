@@ -1,14 +1,14 @@
-# Plover Retro surround
+# Plover Retro EVERYTHING
 
-Surround an arbitrary amount of words with any string after you've already written them.
+Surround words you previously typed with arbitrary translations, 
+allowing you to turn most mode-switching plugin into a retro-plugin!
 
 ## Usage
 
 Add dictionary entries like these:
 
 ```json
-"SPREPBS": "{:retro_surround:1:(:)}"
-"SPREPBS/SPREPBS": "{:retro_surround:2:(:)}"
-"SPREPBS/SPREPBS/SPREPBS": "{:retro_surround:3:(:)}"
+"KARPS": "{:retro_everything:{MODE:CAPS},{MODE:RESET})}",
+"*UPBDZ": "{:retro_everything:{MODE:SET_SPACE:_},{MODE:RESET})}"
 ```
 and that's it!

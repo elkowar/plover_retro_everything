@@ -13,9 +13,12 @@ def flatten(x: List[List]) -> List:
     return list(itertools.chain.from_iterable(x))
 
 
-def recursively_unfuck_thing(stroke: Stroke, t: Translation) -> List[str]:
+def recursively_get_old_english(stroke: Stroke, t: Translation) -> List[str]:
     if t.strokes[-1] == stroke:
-        return flatten([recursively_unfuck_thing(stroke, subtrans) for subtrans in t.replaced])
+        return flatten(
+            [recursively_get_old_english(stroke, subtrans)
+             for subtrans in t.replaced]
+        )
     else:
         return [t.english or ""]
 
@@ -38,13 +41,14 @@ def retro_everything(translator: Translator, stroke: Stroke, cmdline: str):
     # translations that _will_ be affected
     affected_translations = all_translations[-(affected_translation_cnt + 1):]
 
-    affected_strokes = flatten([x.strokes or []
-                                for x in affected_translations])
-    affected_string = " ".join(
-        flatten([recursively_unfuck_thing(stroke, t) for t in affected_translations]))
+    affected_strokes = flatten([x.strokes for x in affected_translations])
+    affected_string = " ".join(flatten(
+        [recursively_get_old_english(stroke, t)
+         for t in affected_translations]
+    ))
 
-    my_trans = Translation(
-        affected_strokes + [stroke], left_char + affected_string + right_char)
+    resulting_translation = left_char + affected_string + right_char
+    my_trans = Translation(affected_strokes + [stroke], resulting_translation)
     my_trans.replaced = affected_translations
 
     translator.translate_translation(my_trans)
